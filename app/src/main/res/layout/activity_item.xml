@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="120dp"
     android:orientation="vertical">
 
     <TextView
@@ -14,6 +14,7 @@
         android:text="Journalists to use 'immune system' software against fake news" />
 
     <TextView
+        android:id="@+id/author_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -33,7 +34,7 @@
             android:text="Education" />
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/date_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="15dp"
@@ -42,6 +43,12 @@
             android:text="2017-8-01" />
 
     </RelativeLayout>
+
+    <TextView
+       android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000000"/>
 
 
 </LinearLayout>

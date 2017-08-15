@@ -1,5 +1,7 @@
 package com.xianwei.news;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         holder.author.setText(newsItem.getAuthor());
         holder.section.setText(newsItem.getSection());
         holder.date.setText(newsItem.getDate().substring(0,10));
+        holder.urlString = newsItem.getWebUrl();
     }
 
     @Override
@@ -46,6 +49,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         public TextView section;
         public TextView date;
         public View layout;
+        public String urlString;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -54,6 +58,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
             author = (TextView) itemView.findViewById(R.id.author_tv);
             section = (TextView) itemView.findViewById(R.id.section_tv);
             date = (TextView) itemView.findViewById(R.id.date_tv);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(urlString));
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

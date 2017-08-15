@@ -1,6 +1,6 @@
 package com.xianwei.news;
 
-import android.content.AsyncTaskLoader;
+import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
 import android.util.Log;
 

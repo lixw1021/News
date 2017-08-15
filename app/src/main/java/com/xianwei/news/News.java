@@ -1,7 +1,5 @@
 package com.xianwei.news;
 
-import java.util.Date;
-
 /**
  * Created by xianwei li on 8/14/2017.
  */
@@ -10,13 +8,15 @@ public class News {
     private String title;
     private String author;
     private String section;
-    private Date date;
+    private String date;
+    private String webUrl;
 
-    public News(String title, String author, String section, Date date) {
+    public News(String title, String author, String section, String date, String webUrl) {
         this.title = title;
         this.author = author;
         this.section = section;
         this.date = date;
+        this.webUrl = webUrl;
     }
 
     public String getTitle() {
@@ -31,7 +31,11 @@ public class News {
         return section;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
     }
 }

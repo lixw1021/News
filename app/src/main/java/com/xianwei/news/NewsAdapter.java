@@ -12,19 +12,18 @@ import java.util.List;
  * Created by xianwei li on 8/14/2017.
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<News> newsList;
 
-    public RecyclerViewAdapter(List<News> newsList) {
+    public NewsAdapter(List<News> newsList) {
         this.newsList = newsList;
     }
 
     @Override
-    public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NewsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.activity_item, parent,false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -33,9 +32,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.title.setText(newsItem.getTitle());
         holder.author.setText(newsItem.getAuthor());
         holder.section.setText(newsItem.getSection());
-        holder.date.setText(newsItem.getDate().toString());
+        holder.date.setText(newsItem.getDate().substring(0,10));
     }
-
 
     @Override
     public int getItemCount() {
@@ -56,7 +54,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             author = (TextView) itemView.findViewById(R.id.author_tv);
             section = (TextView) itemView.findViewById(R.id.section_tv);
             date = (TextView) itemView.findViewById(R.id.date_tv);
-
         }
     }
 }

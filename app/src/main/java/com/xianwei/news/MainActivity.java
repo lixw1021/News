@@ -1,10 +1,13 @@
 package com.xianwei.news;
 
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<News>> {
 
     public static final String LOG_TAG = MainActivity.class.getName();
     public final String url = "https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor";
@@ -30,25 +33,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        new LoadTask().execute(url);
+        linearLayoutManager = new LinearLayoutManager(MainActivity.this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        getLoaderManager().initLoader(1,null,MainActivity.this);
+        Log.i("1234567", "initLoader");
     }
 
-    class LoadTask extends AsyncTask<String, Integer, List<News>>{
+    @Override
+    public Loader<List<News>> onCreateLoader(int id, Bundle args) {
+        Log.i("1234567", "onCreateLoader");
+        return new NewsLoader(this, url);
+    }
 
-        @Override
-        protected List<News> doInBackground(String... params) {
-            if (params.length <1 || params[0] == null) {
-                return null;
-            }
-            return QueryUtils.fetchNewsList(params[0]);
-        }
+    @Override
+    public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
+        Log.i("1234567", "onLoadFinished");
+        newsAdapter = new NewsAdapter(data);
+        recyclerView.setAdapter(newsAdapter);
+    }
 
-        @Override
-        protected void onPostExecute(List<News> result) {
-            linearLayoutManager = new LinearLayoutManager(MainActivity.this);
-            recyclerView.setLayoutManager(linearLayoutManager);
-            newsAdapter = new NewsAdapter(result);
-            recyclerView.setAdapter(newsAdapter);
-        }
+    @Override
+    public void onLoaderReset(Loader<List<News>> loader) {
+        Log.i("1234567", "onLoaderReset");
     }
 }

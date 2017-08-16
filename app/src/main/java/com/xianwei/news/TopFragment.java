@@ -21,33 +21,31 @@ import butterknife.ButterKnife;
  */
 
 public class TopFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<News>> {
-    public final String url = "https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor";
-    private LinearLayoutManager linearLayoutManager;
-    private NewsAdapter newsAdapter;
-
+    String urlString;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        urlString = this.getArguments().getString("urlString");
         View rootView = inflater.inflate(R.layout.activity_list_root, container, false);
         ButterKnife.bind(this, rootView);
 
         getLoaderManager().initLoader(1,null,this);
-        linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         return rootView;
     }
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        return new NewsLoader(getContext(), url);
+        return new NewsLoader(getContext(), urlString);
     }
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
-        newsAdapter = new NewsAdapter(data);
+        NewsAdapter newsAdapter = new NewsAdapter(data);
         recyclerView.setAdapter(newsAdapter);
     }
 

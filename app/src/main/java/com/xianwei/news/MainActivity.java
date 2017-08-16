@@ -26,16 +26,35 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.pager)
     ViewPager viewPager;
 
+    List<String> tableTitles;
+    List<String> urlStrings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        mainActivityAdapter = new MainActivityAdapter(getSupportFragmentManager());
+        fakeData();
+        mainActivityAdapter = new MainActivityAdapter(getSupportFragmentManager(), tableTitles, urlStrings);
         viewPager.setAdapter(mainActivityAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
     }
+
+    private void fakeData() {
+        tableTitles = new ArrayList<>();
+        tableTitles.add("Politics");
+        tableTitles.add("Eduction");
+        tableTitles.add("Business");
+        tableTitles.add("Travel");
+        tableTitles.add("Travel");
+
+        urlStrings = new ArrayList<>();
+        urlStrings.add("https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test");
+        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
+        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
+        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
+        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
+    }
+
 }

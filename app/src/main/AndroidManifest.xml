@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SettingActivity"
+            android:label="News Setting">
+
+        </activity>
     </application>
 
 </manifest>

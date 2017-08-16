@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,17 +41,20 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
+        Log.i("1234567", "onCreateLoader");
         return new NewsLoader(getContext(), urlString);
     }
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
+        Log.i("1234567", "onLoadFinished");
         NewsAdapter newsAdapter = new NewsAdapter(data);
         recyclerView.setAdapter(newsAdapter);
     }
 
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
+        Log.i("1234567", "onLoaderReset");
 
     }
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="type_entities">
+        <item>Politics</item>
+        <item>Eduction</item>
+        <item>Business</item>
+        <item>Travel</item>
+        <item>Technology</item>
+    </string-array>
+
+    <string-array name="type_values">
+        <item>Politics</item>
+        <item>Eduction</item>
+        <item>Business</item>
+        <item>Travel</item>
+        <item>Technology</item>
+    </string-array>
+</resources>

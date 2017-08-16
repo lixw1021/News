@@ -1,20 +1,23 @@
 package com.xianwei.news;
 
-import android.app.LoaderManager;
-import android.content.Loader;
-import android.os.AsyncTask;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,28 +36,56 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        fakeData();
+        prepareData();
         mainActivityAdapter = new MainActivityAdapter(getSupportFragmentManager(), tableTitles, urlStrings);
         viewPager.setAdapter(mainActivityAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
+
     }
 
-    private void fakeData() {
+    private void prepareData() {
+        Map<String, String> urlMap = new HashMap<>();
+        urlMap.put("Politics", "https://content.guardianapis.com/politics?api-key=test");
+        urlMap.put("Eduction", "https://content.guardianapis.com/education?api-key=test");
+        urlMap.put("Business", "https://content.guardianapis.com/business?api-key=test");
+        urlMap.put("Travel", "https://content.guardianapis.com/travel?api-key=test");
+        urlMap.put("Technology", "https://content.guardianapis.com/technology?api-key=test");
         tableTitles = new ArrayList<>();
-        tableTitles.add("Politics");
-        tableTitles.add("Eduction");
-        tableTitles.add("Business");
-        tableTitles.add("Travel");
-        tableTitles.add("Travel");
-
         urlStrings = new ArrayList<>();
-        urlStrings.add("https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&api-key=test");
-        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
-        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
-        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
-        urlStrings.add("https://content.guardianapis.com/search?q=debates&api-key=test&show-tags=contributor");
+        Set<String> defaultTitle = new HashSet<>();
+        defaultTitle.add("Politics");
+
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Set<String> urlSet = sharedPreferences.getStringSet("favorite_category_key",defaultTitle);
+        Log.i("shared", String.valueOf(urlSet.size()));
+        Iterator it = urlSet.iterator();
+        while (it.hasNext()) {
+            String entryValue = it.next().toString();
+            Log.i("shared", entryValue);
+            tableTitles.add(entryValue);
+            urlStrings.add(urlMap.get(entryValue));
+        }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.setting, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent settingsIntent = new Intent(this, SettingActivity.class);
+            startActivity(settingsIntent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

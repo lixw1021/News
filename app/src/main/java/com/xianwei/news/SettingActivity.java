@@ -43,14 +43,19 @@ public class SettingActivity extends AppCompatActivity {
         public boolean onPreferenceChange(Preference preference, Object newValue) {
             Set<String> set = (Set<String>) newValue;
 
-            Iterator it = set.iterator();
-            while (it.hasNext()) {
-                Log.i("1234567", it.next().toString());
+            if (set != null) {
+                Iterator it = set.iterator();
+                while (it.hasNext()) {
+                    Log.i("1234567", it.next().toString());
+                }
+
+                MultiSelectListPreference prefer = (MultiSelectListPreference) preference;
+                prefer.setValues(set);
+                return true;
+            } else {
+                return false;
             }
 
-            MultiSelectListPreference prefer = (MultiSelectListPreference) preference;
-            prefer.setValues(set);
-            return true;
         }
     }
 

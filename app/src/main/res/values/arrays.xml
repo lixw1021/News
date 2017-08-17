@@ -10,10 +10,10 @@
     </string-array>
 
     <string-array name="type_values">
-        <item>Politics</item>
-        <item>Eduction</item>
-        <item>Business</item>
-        <item>Travel</item>
-        <item>Technology</item>
+        <item>politics</item>
+        <item>education</item>
+        <item>business</item>
+        <item>travel</item>
+        <item>technology</item>
     </string-array>
 </resources>

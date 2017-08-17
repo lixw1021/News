@@ -2,6 +2,7 @@ package com.xianwei.news;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
@@ -48,27 +49,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void prepareData() {
-        Map<String, String> urlMap = new HashMap<>();
-        urlMap.put("Politics", "https://content.guardianapis.com/politics?api-key=test");
-        urlMap.put("Eduction", "https://content.guardianapis.com/education?api-key=test");
-        urlMap.put("Business", "https://content.guardianapis.com/business?api-key=test");
-        urlMap.put("Travel", "https://content.guardianapis.com/travel?api-key=test");
-        urlMap.put("Technology", "https://content.guardianapis.com/technology?api-key=test");
         tableTitles = new ArrayList<>();
         urlStrings = new ArrayList<>();
+        String baseUrl = "https://content.guardianapis.com";
         Set<String> defaultTitle = new HashSet<>();
-        defaultTitle.add("Politics");
-
-
+        defaultTitle.add("politics");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Set<String> urlSet = sharedPreferences.getStringSet("favorite_category_key",defaultTitle);
-        Log.i("shared", String.valueOf(urlSet.size()));
-        Iterator it = urlSet.iterator();
-        while (it.hasNext()) {
-            String entryValue = it.next().toString();
-            Log.i("shared", entryValue);
-            tableTitles.add(entryValue);
-            urlStrings.add(urlMap.get(entryValue));
+        for (String title : urlSet) {
+            String url = Uri.parse(baseUrl)
+                    .buildUpon()
+                    .appendEncodedPath(title)
+                    .appendQueryParameter("api-key", "test")
+                    .build().toString();
+            Log.i("0123", url);
+
+            tableTitles.add(title);
+            urlStrings.add(url);
         }
     }
 

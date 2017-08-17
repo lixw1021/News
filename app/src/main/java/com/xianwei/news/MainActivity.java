@@ -33,10 +33,12 @@ public class MainActivity extends AppCompatActivity {
     List<String> urlStrings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         prepareData();
+        Log.i("1234567", "mainActivity created again");
         mainActivityAdapter = new MainActivityAdapter(getSupportFragmentManager(), tableTitles, urlStrings);
         viewPager.setAdapter(mainActivityAdapter);
 

@@ -13,5 +13,6 @@
 
     <string name="setting_multi_select_key">favorite_category_key</string>
     <string name="setting_multi_select_title">Favorite category</string>
+    <string name="default_title">politics</string>
     <!-- Strings related to Settings -->
 </resources>

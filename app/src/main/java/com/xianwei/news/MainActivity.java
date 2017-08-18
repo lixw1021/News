@@ -29,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.no_internet)
     TextView noInternet_tv;
 
-    public static final String LOG_TAG = MainActivity.class.getName();
+    public final static String LOG_TAG = MainActivity.class.getName();
+    private final static String PARAM_API = "api-key";
+    private final static String PARAM_SHOW_TAGS = "show-tags";
+    private final static String PARAM_CONTRIBUTOR = "contributor";
+
     MainActivityAdapter mainActivityAdapter;
     List<String> tableTitles;
     List<String> urlStrings;
@@ -63,16 +67,16 @@ public class MainActivity extends AppCompatActivity {
         urlStrings = new ArrayList<>();
         Set<String> defaultTitle = new HashSet<>();
         String baseUrl = getString(R.string.base_url);
-        defaultTitle.add("politics");
+        defaultTitle.add(getString(R.string.default_title));
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Set<String> urlSet = sharedPreferences.getStringSet("favorite_category_key", defaultTitle);
+        Set<String> urlSet = sharedPreferences.getStringSet(getString(R.string.setting_multi_select_key), defaultTitle);
 
         for (String title : urlSet) {
             String url = Uri.parse(baseUrl)
                     .buildUpon()
                     .appendEncodedPath(title)
-                    .appendQueryParameter("api-key", getString(R.string.api_key))
-                    .appendQueryParameter("show-tags", "contributor")
+                    .appendQueryParameter(PARAM_API, getString(R.string.api_key))
+                    .appendQueryParameter(PARAM_SHOW_TAGS, PARAM_CONTRIBUTOR)
                     .build().toString();
             tableTitles.add(title);
             urlStrings.add(url);

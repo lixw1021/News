@@ -24,6 +24,18 @@ import static com.xianwei.news.MainActivity.LOG_TAG;
  */
 
 public final class QueryUtils {
+    private final static int READ_TIMEOUT = 15000;
+    private final static int READ_CONNECT_TIMEOUT = 15000;
+
+    private final static String KEY_RESPONSE = "response";
+    private final static String KEY_RESULT = "results";
+    private final static String KEY_WEB_TITLE = "webTitle";
+    private final static String KEY_SECTION_NAME = "sectionName";
+    private final static String KEY_WEB_PUBLICATION_DATE = "webPublicationDate";
+    private final static String KEY_WEB_URL = "webUrl";
+    private final static String KEY_TAGS = "tags";
+
+
 
     public static List<News> fetchNewsList(String urlString) {
         URL url = StringToUrl(urlString);
@@ -53,8 +65,8 @@ public final class QueryUtils {
 
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(15000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(READ_TIMEOUT);
+            urlConnection.setConnectTimeout(READ_CONNECT_TIMEOUT);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -65,7 +77,7 @@ public final class QueryUtils {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem with retrieving the earthquake JSON results", e);
+            Log.e(LOG_TAG, "Problem with retrieving the news JSON results", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -105,11 +117,11 @@ public final class QueryUtils {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
 
-            if (jsonObject.has("response")) {
-                JSONObject response = jsonObject.getJSONObject("response");
+            if (jsonObject.has(KEY_RESPONSE)) {
+                JSONObject response = jsonObject.getJSONObject(KEY_RESPONSE);
 
-                if (response.has("results")) {
-                    JSONArray newsResults = response.getJSONArray("results");
+                if (response.has(KEY_RESULT)) {
+                    JSONArray newsResults = response.getJSONArray(KEY_RESULT);
 
                     for (int i = 0; i < newsResults.length(); i++) {
                         JSONObject currentNews = newsResults.getJSONObject(i);
@@ -119,16 +131,16 @@ public final class QueryUtils {
                         String date;
                         String webUrl;
 
-                        title = currentNews.getString("webTitle");
-                        section = currentNews.getString("sectionName");
-                        date = currentNews.getString("webPublicationDate");
-                        webUrl = currentNews.getString("webUrl");
+                        title = currentNews.getString(KEY_WEB_TITLE);
+                        section = currentNews.getString(KEY_SECTION_NAME);
+                        date = currentNews.getString(KEY_WEB_PUBLICATION_DATE);
+                        webUrl = currentNews.getString(KEY_WEB_URL);
 
-                        if (currentNews.has("tags")) {
-                            JSONArray tags = currentNews.getJSONArray("tags");
+                        if (currentNews.has(KEY_TAGS)) {
+                            JSONArray tags = currentNews.getJSONArray(KEY_TAGS);
 
                             if (tags.length() != 0) {
-                                author = tags.getJSONObject(0).getString("webTitle");
+                                author = tags.getJSONObject(0).getString(KEY_WEB_TITLE);
                             }
                         }
                         newsList.add(new News(title, author, section, date, webUrl));

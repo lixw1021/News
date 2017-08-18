@@ -2,6 +2,8 @@ package com.xianwei.news;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -11,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,22 +33,34 @@ public class MainActivity extends AppCompatActivity {
     MainActivityAdapter mainActivityAdapter;
     @BindView(R.id.pager)
     ViewPager viewPager;
+    @BindView(R.id.no_internet)
+    TextView noInternet_tv;
 
     List<String> tableTitles;
     List<String> urlStrings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        prepareData();
-        Log.i("1234567", "mainActivity created again");
-        mainActivityAdapter = new MainActivityAdapter(getSupportFragmentManager(), tableTitles, urlStrings);
-        viewPager.setAdapter(mainActivityAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        tabLayout.setupWithViewPager(viewPager);
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo netWorkinfo = cm.getActiveNetworkInfo();
+        if (netWorkinfo != null && netWorkinfo.isConnected()) {
+            noInternet_tv.setVisibility(View.GONE);
+            prepareData();
+            mainActivityAdapter = new MainActivityAdapter(getSupportFragmentManager(), tableTitles, urlStrings);
+            viewPager.setAdapter(mainActivityAdapter);
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+            tabLayout.setupWithViewPager(viewPager);
+        } else {
+            noInternet_tv.setText("Please check your Internet");
+        }
+
+
+
 
     }
 

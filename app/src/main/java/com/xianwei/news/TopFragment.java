@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
     String urlString;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.progressbar_view)
+    ProgressBar progressBar;
 
     @Nullable
     @Override
@@ -42,12 +45,14 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
         Log.i("1234567", "onCreateLoader");
+        progressBar.setVisibility(View.VISIBLE);
         return new NewsLoader(getContext(), urlString);
     }
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         Log.i("1234567", "onLoadFinished");
+        progressBar.setVisibility(View.GONE);
         NewsAdapter newsAdapter = new NewsAdapter(data);
         recyclerView.setAdapter(newsAdapter);
     }

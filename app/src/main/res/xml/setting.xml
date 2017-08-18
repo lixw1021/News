@@ -4,7 +4,7 @@
     <MultiSelectListPreference
         android:entries="@array/type_entities"
         android:entryValues="@array/type_values"
-        android:key="favorite_category_key"
-        android:title="Favorite category" />
+        android:key="@string/setting_multi_select_key"
+        android:title="@string/setting_multi_select_title" />
 
 </PreferenceScreen>

@@ -1,12 +1,9 @@
 package com.xianwei.news;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
-import android.widget.ListView;
 
 import java.util.List;
 
@@ -23,56 +20,52 @@ public class MainActivityAdapter extends FragmentPagerAdapter {
         this.tableTitles = tableTitles;
         this.urls = urls;
     }
+
     Bundle bundle;
+
     @Override
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
                 bundle = new Bundle();
                 String urlString0 = urls.get(0);
-                Log.i("123456", urlString0);
                 bundle.putString("urlString", urlString0);
-                TopFragment result0 =  new TopFragment();
+                TopFragment result0 = new TopFragment();
                 result0.setArguments(bundle);
                 return result0;
             case 1:
                 bundle = new Bundle();
                 String urlString1 = urls.get(1);
-                Log.i("123456", urlString1);
                 bundle.putString("urlString", urlString1);
-                TopFragment result1 =  new TopFragment();
+                TopFragment result1 = new TopFragment();
                 result1.setArguments(bundle);
                 return result1;
             case 2:
                 bundle = new Bundle();
                 String urlString2 = urls.get(2);
-                Log.i("123456", urlString2);
                 bundle.putString("urlString", urlString2);
-                TopFragment result2 =  new TopFragment();
+                TopFragment result2 = new TopFragment();
                 result2.setArguments(bundle);
                 return result2;
             case 3:
                 bundle = new Bundle();
                 String urlString3 = urls.get(3);
-                Log.i("123456", urlString3);
                 bundle.putString("urlString", urlString3);
-                TopFragment result3 =  new TopFragment();
+                TopFragment result3 = new TopFragment();
                 result3.setArguments(bundle);
                 return result3;
             case 4:
                 bundle = new Bundle();
                 String urlString4 = urls.get(4);
-                Log.i("123456", urlString4);
                 bundle.putString("urlString", urlString4);
-                TopFragment result4 =  new TopFragment();
+                TopFragment result4 = new TopFragment();
                 result4.setArguments(bundle);
                 return result4;
             case 5:
                 bundle = new Bundle();
                 String urlString5 = urls.get(5);
-                Log.i("123456", urlString5);
                 bundle.putString("urlString", urlString5);
-                TopFragment result5 =  new TopFragment();
+                TopFragment result5 = new TopFragment();
                 result5.setArguments(bundle);
                 return result5;
             default:

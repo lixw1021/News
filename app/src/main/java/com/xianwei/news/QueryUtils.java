@@ -31,12 +31,11 @@ public final class QueryUtils {
         return extractNewsFromJson(jsonResponse);
     }
 
-    private static URL StringToUrl (String urlString) {
+    private static URL StringToUrl(String urlString) {
         URL url = null;
         try {
             url = new URL(urlString);
         } catch (MalformedURLException e) {
-            Log.e(LOG_TAG, "problem with create URL", e);
             return null;
         }
         return url;

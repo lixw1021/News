@@ -1,8 +1,7 @@
 package com.xianwei.news;
 
-import android.support.v4.content.AsyncTaskLoader;
 import android.content.Context;
-import android.util.Log;
+import android.support.v4.content.AsyncTaskLoader;
 
 import java.util.List;
 
@@ -20,13 +19,11 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     @Override
     protected void onStartLoading() {
-        Log.i("1234567", "onStartLoading");
         forceLoad();
     }
 
     @Override
     public List<News> loadInBackground() {
-        Log.i("1234567", "loadInBackground");
         return QueryUtils.fetchNewsList(url);
     }
 }

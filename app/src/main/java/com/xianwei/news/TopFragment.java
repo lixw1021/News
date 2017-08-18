@@ -1,13 +1,12 @@
 package com.xianwei.news;
 
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,7 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
         View rootView = inflater.inflate(R.layout.activity_list_root, container, false);
         ButterKnife.bind(this, rootView);
 
-        getLoaderManager().initLoader(1,null,this);
+        getLoaderManager().initLoader(1, null, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         return rootView;
@@ -44,14 +43,12 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        Log.i("1234567", "onCreateLoader");
         progressBar.setVisibility(View.VISIBLE);
         return new NewsLoader(getContext(), urlString);
     }
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
-        Log.i("1234567", "onLoadFinished");
         progressBar.setVisibility(View.GONE);
         NewsAdapter newsAdapter = new NewsAdapter(data);
         recyclerView.setAdapter(newsAdapter);
@@ -59,7 +56,6 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
 
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
-        Log.i("1234567", "onLoaderReset");
 
     }
 }

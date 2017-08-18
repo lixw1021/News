@@ -8,9 +8,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -32,10 +30,11 @@ public class SettingActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.setting);
 
-            Preference favoritePreference = findPreference("favorite_category_key");
+            Preference favoritePreference = findPreference(getString(R.string.setting_multi_select_key));
             favoritePreference.setOnPreferenceChangeListener(this);
+
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(favoritePreference.getContext());
-            Set<String> newValue = sharedPreferences.getStringSet(favoritePreference.getKey(),null);
+            Set<String> newValue = sharedPreferences.getStringSet(favoritePreference.getKey(), null);
             onPreferenceChange(favoritePreference, newValue);
         }
 
@@ -44,11 +43,6 @@ public class SettingActivity extends AppCompatActivity {
             Set<String> set = (Set<String>) newValue;
 
             if (set != null) {
-                Iterator it = set.iterator();
-                while (it.hasNext()) {
-                    Log.i("1234567", it.next().toString());
-                }
-
                 MultiSelectListPreference prefer = (MultiSelectListPreference) preference;
                 prefer.setValues(set);
                 return true;

@@ -26,7 +26,8 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.progressbar_view)
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
+    private NewsAdapter mNewsAdapter;
 
     @Nullable
     @Override
@@ -37,7 +38,9 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
 
         getLoaderManager().initLoader(1, null, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        mNewsAdapter = new NewsAdapter();
         recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(mNewsAdapter);
         return rootView;
     }
 
@@ -50,12 +53,11 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         progressBar.setVisibility(View.GONE);
-        NewsAdapter newsAdapter = new NewsAdapter(data);
-        recyclerView.setAdapter(newsAdapter);
+        mNewsAdapter.setNewsData(data);
     }
 
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
-
+        mNewsAdapter.setNewsData(null);
     }
 }

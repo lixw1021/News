@@ -17,8 +17,7 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private List<News> newsList;
 
-    public NewsAdapter(List<News> newsList) {
-        this.newsList = newsList;
+    public NewsAdapter() {
     }
 
     @Override
@@ -67,5 +66,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                 }
             });
         }
+    }
+
+    public void setNewsData (List<News> newData) {
+        newsList = newData;
+        notifyDataSetChanged();
     }
 }

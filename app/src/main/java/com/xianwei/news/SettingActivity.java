@@ -23,8 +23,8 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
     }
 
-    public static class NewsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
-
+    public static class NewsPreferenceFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener{
+        private SharedPreferences sharedPreferences;
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -33,7 +33,7 @@ public class SettingActivity extends AppCompatActivity {
             Preference favoritePreference = findPreference(getString(R.string.setting_multi_select_key));
             favoritePreference.setOnPreferenceChangeListener(this);
 
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(favoritePreference.getContext());
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(favoritePreference.getContext());
             Set<String> newValue = sharedPreferences.getStringSet(favoritePreference.getKey(), null);
             onPreferenceChange(favoritePreference, newValue);
         }

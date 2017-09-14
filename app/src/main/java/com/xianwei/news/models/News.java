@@ -1,4 +1,4 @@
-package com.xianwei.news;
+package com.xianwei.news.models;
 
 /**
  * Created by xianwei li on 8/14/2017.

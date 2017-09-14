@@ -1,4 +1,4 @@
-package com.xianwei.news;
+package com.xianwei.news.adapters;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.xianwei.news.models.News;
+import com.xianwei.news.R;
 
 import java.util.List;
 

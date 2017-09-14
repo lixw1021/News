@@ -1,6 +1,8 @@
-package com.xianwei.news;
+package com.xianwei.news.utils;
 
 import android.util.Log;
+
+import com.xianwei.news.models.News;
 
 import org.json.JSONArray;
 import org.json.JSONException;

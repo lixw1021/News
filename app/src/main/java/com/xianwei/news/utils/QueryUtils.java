@@ -143,7 +143,7 @@ public final class QueryUtils {
                         if (currentNews.has(KEY_PUBLISHED_AT)) {
                             date = currentNews.getString(KEY_PUBLISHED_AT);
                         }
-                        newsList.add(new News(title, description, url, imageUrl, date.substring(0,10)));
+                        newsList.add(new News(title, description, url, imageUrl, date));
                     }
                 } else {
                 return newsList;

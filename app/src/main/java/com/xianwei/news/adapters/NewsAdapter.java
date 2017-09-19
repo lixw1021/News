@@ -1,17 +1,24 @@
 package com.xianwei.news.adapters;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.xianwei.news.R;
 import com.xianwei.news.WebActivity;
 import com.xianwei.news.models.News;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by xianwei li on 8/14/2017.
@@ -20,8 +27,10 @@ import java.util.List;
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     private static final String URL_STRING = "urlString";
     private List<News> newsList;
+    Context context;
 
-    public NewsAdapter() {
+    public NewsAdapter(Context context) {
+        this.context = context;
     }
 
     @Override
@@ -34,11 +43,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         News newsItem = newsList.get(position);
+        Picasso.with(context)
+                .load(newsItem.getImageUrlString())
+                .placeholder(R.drawable.ic_image_holder)
+                .error(R.drawable.ic_broken_image)
+                .into(holder.imageView);
+
         holder.title.setText(newsItem.getTitle());
-        holder.author.setText(newsItem.getAuthor());
-        holder.section.setText(newsItem.getSection());
+        holder.description.setText(newsItem.getDescription());
         holder.date.setText(newsItem.getDate().substring(0, 10));
-        holder.urlString = newsItem.getWebUrl();
+        holder.urlString = newsItem.getUrlString();
     }
 
     @Override
@@ -50,20 +64,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView title;
-        public TextView author;
-        public TextView section;
-        public TextView date;
-        public View layout;
-        public String urlString;
+        @BindView(R.id.item_cover_iv)
+        ImageView imageView;
+        @BindView(R.id.item_title_tv)
+        TextView title;
+        @BindView(R.id.item_description_tv)
+        TextView description;
+        @BindView(R.id.item_description_tv)
+        TextView date;
+        String urlString;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            layout = itemView;
-            title = (TextView) itemView.findViewById(R.id.title_tv);
-            author = (TextView) itemView.findViewById(R.id.author_tv);
-            section = (TextView) itemView.findViewById(R.id.section_tv);
-            date = (TextView) itemView.findViewById(R.id.date_tv);
+            ButterKnife.bind(this, itemView);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

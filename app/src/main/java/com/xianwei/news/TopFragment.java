@@ -48,7 +48,7 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
 
         getLoaderManager().initLoader(loaderId, null, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        mNewsAdapter = new NewsAdapter();
+        mNewsAdapter = new NewsAdapter(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(mNewsAdapter);
         return rootView;

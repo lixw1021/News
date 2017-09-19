@@ -29,13 +29,11 @@ public final class QueryUtils {
     private final static int READ_TIMEOUT = 15000;
     private final static int READ_CONNECT_TIMEOUT = 15000;
 
-    private final static String KEY_RESPONSE = "response";
-    private final static String KEY_RESULT = "results";
-    private final static String KEY_WEB_TITLE = "webTitle";
-    private final static String KEY_SECTION_NAME = "sectionName";
-    private final static String KEY_WEB_PUBLICATION_DATE = "webPublicationDate";
-    private final static String KEY_WEB_URL = "webUrl";
-    private final static String KEY_TAGS = "tags";
+    private final static String KEY_TITLE = "title";
+    private final static String KEY_DESCRIPTION = "description";
+    private final static String KEY_URL = "url";
+    private final static String KEY_URITOIMAGE = "urlToImage";
+    private final static String KEY_PUBLISHED_AT = "publishedAt";
 
 
 
@@ -119,36 +117,35 @@ public final class QueryUtils {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
 
-            if (jsonObject.has(KEY_RESPONSE)) {
-                JSONObject response = jsonObject.getJSONObject(KEY_RESPONSE);
-
-                if (response.has(KEY_RESULT)) {
-                    JSONArray newsResults = response.getJSONArray(KEY_RESULT);
+                if (jsonObject.has("articles")) {
+                    JSONArray newsResults = jsonObject.getJSONArray("articles");
 
                     for (int i = 0; i < newsResults.length(); i++) {
                         JSONObject currentNews = newsResults.getJSONObject(i);
-                        String title;
-                        String author = null;
-                        String section;
-                        String date;
-                        String webUrl;
+                        String title = null;
+                        String description = null;
+                        String url = null;
+                        String imageUrl = null;
+                        String date = null;
 
-                        title = currentNews.getString(KEY_WEB_TITLE);
-                        section = currentNews.getString(KEY_SECTION_NAME);
-                        date = currentNews.getString(KEY_WEB_PUBLICATION_DATE);
-                        webUrl = currentNews.getString(KEY_WEB_URL);
-
-                        if (currentNews.has(KEY_TAGS)) {
-                            JSONArray tags = currentNews.getJSONArray(KEY_TAGS);
-
-                            if (tags.length() != 0) {
-                                author = tags.getJSONObject(0).getString(KEY_WEB_TITLE);
-                            }
+                        if (currentNews.has(KEY_TITLE)) {
+                            title = currentNews.getString(KEY_TITLE);
                         }
-                        newsList.add(new News(title, author, section, date, webUrl));
+                        if (currentNews.has(KEY_DESCRIPTION)) {
+                            description = currentNews.getString(KEY_DESCRIPTION);
+                        }
+                        if (currentNews.has(KEY_URL)) {
+                            url = currentNews.getString(KEY_URL);
+                        }
+                        if (currentNews.has(KEY_URITOIMAGE)) {
+                            imageUrl = currentNews.getString(KEY_URITOIMAGE);
+                        }
+                        if (currentNews.has(KEY_PUBLISHED_AT)) {
+                            date = currentNews.getString(KEY_PUBLISHED_AT);
+                        }
+                        newsList.add(new News(title, description, url, imageUrl, date.substring(0,10)));
                     }
-                }
-            } else {
+                } else {
                 return newsList;
             }
         } catch (JSONException e) {

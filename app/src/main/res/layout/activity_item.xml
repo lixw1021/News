@@ -56,7 +56,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:background="@color/colorWhite"
-        app:layout_constraintEnd_toStartOf="@id/item_share_ib"
+        app:layout_constraintEnd_toStartOf="@+id/item_share_ib"
         app:layout_constraintTop_toTopOf="@+id/item_data_tv"
         app:srcCompat="@drawable/ic_unfavorite" />
 

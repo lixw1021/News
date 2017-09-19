@@ -42,26 +42,6 @@ public class News implements Parcelable {
         return date;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setUrlString(String urlString) {
-        this.urlString = urlString;
-    }
-
-    public void setImageUrlString(String imageUrlString) {
-        this.imageUrlString = imageUrlString;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     @Override
     public int describeContents() {
         return 0;

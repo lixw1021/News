@@ -36,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
     public final static String LOG_TAG = MainActivity.class.getName();
     private final static String BASE_URL = "https://newsapi.org/v1/articles";
     private final static String PARAM_API_KEY = "apikey";
-    private final static String PARAM_SHOW_TAGS = "show-tags";
-    private final static String PARAM_CONTRIBUTOR = "contributor";
 
     MainActivityAdapter mainActivityAdapter;
     List<String> tableTitles;
@@ -75,11 +73,22 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Set<String> urlSet = sharedPreferences.getStringSet(getString(R.string.setting_multi_select_key), defaultTitle);
         Map<String, String> titleMap = new HashMap<>();
-        titleMap.put("bloomberg","Bloomberg");
-        titleMap.put("fortune","Fortune");
-        titleMap.put("the-new-york-times","NY Times");
-        titleMap.put("time","Time");
+        titleMap.put("usa-today","USA Today");
+        titleMap.put("cnn","CNN");
+        titleMap.put("associated-press","Associated Press");
+        titleMap.put("the-new-york-times","NK Times");
+        titleMap.put("the-washington-post","Washington Post");
         titleMap.put("bbc-news","BBC");
+        titleMap.put("the-guardian-uk","Guardian");
+        titleMap.put("reuters","Reuters");
+        titleMap.put("bloomberg","Bloomberg");
+        titleMap.put("business-insider","Business Insider");
+        titleMap.put("the-economist","Economist");
+        titleMap.put("the-wall-street-journal","WSJ");
+        titleMap.put("national-geographic","National Geographic");
+        titleMap.put("new-scientist","New Scientist");
+        titleMap.put("techcrunch","TechCrunch");
+
 
         for (String title : urlSet) {
             String url = Uri.parse(BASE_URL)

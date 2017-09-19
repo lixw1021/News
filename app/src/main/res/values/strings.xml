@@ -2,12 +2,6 @@
     <string name="app_name">News</string>
     <string name="api_key"></string>
 
-    <string name="title_activity_settings">Settings</string>
-    <string name="item_title">Journalists to use \'immune system\' software against fake news</string>
-    <string name="item_author">by mike Js</string>
-    <string name="item_section">Education</string>
-    <string name="item_date">2017-8-01</string>
-
     <string name="check_internet">Please check your internet !</string>
 
     <string name="setting_multi_select_key">favorite_category_key</string>

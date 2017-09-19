@@ -24,7 +24,6 @@ public class WebFragment extends Fragment {
     ProgressBar progressBar;
 
     private static final String URL_STRING = "urlString";
-    private String urlString;
 
     public WebFragment() {
     }
@@ -34,7 +33,7 @@ public class WebFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragement_web, container, false);
         ButterKnife.bind(this, rootView);
 
-        urlString = this.getArguments().getString(URL_STRING, "https://apple.com");
+        String urlString = this.getArguments().getString(URL_STRING, "https://apple.com");
         webView.loadUrl(urlString);
 
         // Force links and redirects to open in the WebView instead of in a browser

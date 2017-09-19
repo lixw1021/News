@@ -9,12 +9,12 @@
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:background="@color/colorPrimary"
-        app1:tabMode="scrollable"
-        app:tabIndicatorColor="@color/colorWhite"
-        app:tabSelectedTextColor="@color/colorWhite"
-        app:tabTextColor="@color/colorGray" />
+        app1:tabTextColor="@color/colorGray"
+        app1:tabSelectedTextColor="@color/colorWhite"
+        app1:tabIndicatorColor="@color/colorAccent"
+        app1:tabMode="scrollable"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

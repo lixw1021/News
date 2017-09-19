@@ -41,6 +41,24 @@ public class MainActivityAdapter extends FragmentPagerAdapter {
                 return newFragment(4);
             case 5:
                 return newFragment(5);
+            case 6:
+                return newFragment(6);
+            case 7:
+                return newFragment(7);
+            case 8:
+                return newFragment(8);
+            case 9:
+                return newFragment(9);
+            case 10:
+                return newFragment(10);
+            case 11:
+                return newFragment(11);
+            case 12:
+                return newFragment(12);
+            case 13:
+                return newFragment(13);
+            case 14:
+                return newFragment(14);
             default:
                 return null;
         }

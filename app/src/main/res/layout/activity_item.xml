@@ -12,7 +12,6 @@
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/news"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -41,7 +40,7 @@
         tools:text="Users of a free software tool designed to optimize system performance on Windows PCs and Android mobile devices got a nasty shock this morning when Piriform,.." />
 
     <TextView
-        android:id="@+id/item_data_tv"
+        android:id="@+id/item_date_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -57,7 +56,7 @@
         android:layout_marginEnd="10dp"
         android:background="@color/colorWhite"
         app:layout_constraintEnd_toStartOf="@+id/item_share_ib"
-        app:layout_constraintTop_toTopOf="@+id/item_data_tv"
+        app:layout_constraintTop_toTopOf="@+id/item_date_tv"
         app:srcCompat="@drawable/ic_unfavorite" />
 
     <ImageButton
@@ -67,7 +66,7 @@
         android:layout_marginEnd="10dp"
         android:background="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_data_tv"
+        app:layout_constraintTop_toTopOf="@+id/item_date_tv"
         app:srcCompat="@drawable/ic_share" />
 
 </android.support.constraint.ConstraintLayout>

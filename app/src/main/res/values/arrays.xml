@@ -2,18 +2,18 @@
 
 <resources>
     <string-array name="type_entities">
-        <item>Politics</item>
-        <item>Eduction</item>
-        <item>Business</item>
-        <item>Travel</item>
-        <item>Technology</item>
+        <item>Bloomberg</item>
+        <item>Fortune</item>
+        <item>NK Times</item>
+        <item>Time</item>
+        <item>BBC</item>
     </string-array>
 
     <string-array name="type_values">
-        <item>politics</item>
-        <item>education</item>
-        <item>business</item>
-        <item>travel</item>
-        <item>technology</item>
+        <item>bloomberg</item>
+        <item>fortune</item>
+        <item>the-new-york-times</item>
+        <item>time</item>
+        <item>bbc-news</item>
     </string-array>
 </resources>

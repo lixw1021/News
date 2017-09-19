@@ -1,6 +1,5 @@
 package com.xianwei.news.adapters;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -45,13 +44,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         News newsItem = newsList.get(position);
         Picasso.with(context)
                 .load(newsItem.getImageUrlString())
-                .placeholder(R.drawable.ic_image_holder)
-                .error(R.drawable.ic_broken_image)
+//                .placeholder(R.drawable.ic_image_holder)
+//                .error(R.drawable.ic_broken_image)
                 .into(holder.imageView);
 
         holder.title.setText(newsItem.getTitle());
         holder.description.setText(newsItem.getDescription());
-        holder.date.setText(newsItem.getDate().substring(0, 10));
+        String date = newsItem.getDate();
+        if (date != null && date.length() > 9) {
+            holder.date.setText(newsItem.getDate().substring(0, 10));
+        }
         holder.urlString = newsItem.getUrlString();
     }
 
@@ -70,7 +72,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         TextView title;
         @BindView(R.id.item_description_tv)
         TextView description;
-        @BindView(R.id.item_description_tv)
+        @BindView(R.id.item_date_tv)
         TextView date;
         String urlString;
 

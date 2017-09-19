@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     TextView noInternet_tv;
 
     public final static String LOG_TAG = MainActivity.class.getName();
-    private final static String PARAM_API = "api-key";
+    private final static String BASE_URL = "https://newsapi.org/v1/articles";
+    private final static String PARAM_API_KEY = "apikey";
     private final static String PARAM_SHOW_TAGS = "show-tags";
     private final static String PARAM_CONTRIBUTOR = "contributor";
 
@@ -68,17 +69,15 @@ public class MainActivity extends AppCompatActivity {
         tableTitles = new ArrayList<>();
         urlStrings = new ArrayList<>();
         Set<String> defaultTitle = new HashSet<>();
-        String baseUrl = getString(R.string.base_url);
         defaultTitle.add(getString(R.string.default_title));
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Set<String> urlSet = sharedPreferences.getStringSet(getString(R.string.setting_multi_select_key), defaultTitle);
 
         for (String title : urlSet) {
-            String url = Uri.parse(baseUrl)
+            String url = Uri.parse(BASE_URL)
                     .buildUpon()
-                    .appendEncodedPath(title)
-                    .appendQueryParameter(PARAM_API, getString(R.string.api_key))
-                    .appendQueryParameter(PARAM_SHOW_TAGS, PARAM_CONTRIBUTOR)
+                    .appendQueryParameter("source", title)
+                    .appendQueryParameter(PARAM_API_KEY, getString(R.string.api_key))
                     .build().toString();
             tableTitles.add(title);
             urlStrings.add(url);

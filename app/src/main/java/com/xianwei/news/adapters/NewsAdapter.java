@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,8 +45,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         News newsItem = newsList.get(position);
         Picasso.with(context)
                 .load(newsItem.getImageUrlString())
-//                .placeholder(R.drawable.ic_image_holder)
-//                .error(R.drawable.ic_broken_image)
+                .error(R.drawable.ic_broken_image)
                 .into(holder.imageView);
 
         holder.title.setText(newsItem.getTitle());
@@ -74,6 +74,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         TextView description;
         @BindView(R.id.item_date_tv)
         TextView date;
+        @BindView(R.id.item_share_ib)
+        ImageButton shareButton;
         String urlString;
 
         public ViewHolder(View itemView) {
@@ -86,6 +88,19 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
                     Intent intent = new Intent(v.getContext(), WebActivity.class);
                     intent.putExtra(URL_STRING, urlString);
                     v.getContext().startActivity(intent);
+                }
+            });
+
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "news");
+                    intent.putExtra(Intent.EXTRA_TEXT, urlString);
+
+                    v.getContext().startActivity(Intent.createChooser(intent, "Share news"));
                 }
             });
         }

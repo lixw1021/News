@@ -18,8 +18,10 @@ import android.widget.TextView;
 import com.xianwei.news.adapters.MainActivityAdapter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import butterknife.BindView;
@@ -72,6 +74,12 @@ public class MainActivity extends AppCompatActivity {
         defaultTitle.add(getString(R.string.default_title));
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         Set<String> urlSet = sharedPreferences.getStringSet(getString(R.string.setting_multi_select_key), defaultTitle);
+        Map<String, String> titleMap = new HashMap<>();
+        titleMap.put("bloomberg","Bloomberg");
+        titleMap.put("fortune","Fortune");
+        titleMap.put("the-new-york-times","NY Times");
+        titleMap.put("time","Time");
+        titleMap.put("bbc-news","BBC");
 
         for (String title : urlSet) {
             String url = Uri.parse(BASE_URL)
@@ -79,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     .appendQueryParameter("source", title)
                     .appendQueryParameter(PARAM_API_KEY, getString(R.string.api_key))
                     .build().toString();
-            tableTitles.add(title);
+            tableTitles.add(titleMap.get(title));
             urlStrings.add(url);
         }
     }

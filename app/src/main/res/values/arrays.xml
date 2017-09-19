@@ -2,18 +2,45 @@
 
 <resources>
     <string-array name="type_entities">
-        <item>Bloomberg</item>
-        <item>Fortune</item>
-        <item>NK Times</item>
-        <item>Time</item>
+
+        <item>USA Today/今日美国</item>
+        <item>CNN</item>
+        <item>Associated Press/美联社</item>
+        <item>NK Times/纽约时报</item>
+        <item>Washington Post/华盛顿邮报</item>
         <item>BBC</item>
+        <item>Guardian/卫报</item>
+        <item>Reuters/路透社</item>
+
+        <item>Bloomberg/彭博</item>
+        <item>Business Insider/商业内幕</item>
+        <item>Economist/经济学人</item>
+        <item>WSJ/华尔街</item>
+
+        <item>National Geographic/国家地理</item>
+        <item>New Scientist/新科学家</item>
+
+        <item>TechCrunch/科技日报</item>
     </string-array>
 
     <string-array name="type_values">
-        <item>bloomberg</item>
-        <item>fortune</item>
+        <item>usa-today</item>
+        <item>cnn</item>
+        <item>associated-press</item>
         <item>the-new-york-times</item>
-        <item>time</item>
+        <item>the-washington-post</item>
         <item>bbc-news</item>
+        <item>the-guardian-uk</item>
+        <item>reuters</item>
+
+        <item>bloomberg</item>
+        <item>business-insider</item>
+        <item>the-economist</item>
+        <item>the-wall-street-journal</item>
+
+        <item>national-geographic</item>
+        <item>new-scientist</item>
+
+        <item>techcrunch</item>
     </string-array>
 </resources>

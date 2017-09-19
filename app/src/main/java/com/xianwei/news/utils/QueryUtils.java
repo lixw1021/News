@@ -44,7 +44,7 @@ public final class QueryUtils {
     }
 
     private static URL StringToUrl(String urlString) {
-        URL url = null;
+        URL url;
         try {
             url = new URL(urlString);
         } catch (MalformedURLException e) {

@@ -31,7 +31,6 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
 
     private String urlString;
     private NewsAdapter mNewsAdapter;
-    private int loaderId;
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -42,7 +41,7 @@ public class TopFragment extends Fragment implements LoaderManager.LoaderCallbac
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         urlString = this.getArguments().getString(URL_STRING);
-        loaderId = this.getArguments().getInt(LOADER_ID);
+        int loaderId = this.getArguments().getInt(LOADER_ID);
         View rootView = inflater.inflate(R.layout.activity_list_root, container, false);
         ButterKnife.bind(this, rootView);
 

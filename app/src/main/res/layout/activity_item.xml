@@ -53,16 +53,6 @@
         tools:text="2017-09-18" />
 
     <ImageButton
-        android:id="@+id/item_favorite_ib"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:background="@color/colorWhite"
-        app:layout_constraintEnd_toStartOf="@+id/item_share_ib"
-        app:layout_constraintTop_toTopOf="@+id/item_date_tv"
-        app:srcCompat="@drawable/ic_unfavorite" />
-
-    <ImageButton
         android:id="@+id/item_share_ib"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

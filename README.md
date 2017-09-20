@@ -15,3 +15,6 @@ Key words: AsynchTaskLoader, RecyclerView, ViewPager, Fragment, WebView, MultiSe
 ![alt text](https://user-images.githubusercontent.com/24383706/29477974-a398aabe-8438-11e7-86ab-0f95d187d89a.JPG )
 ![alt text](https://user-images.githubusercontent.com/24383706/29477975-a507b9a8-8438-11e7-88e9-a7085b43e218.JPG )
 ![alt text](https://user-images.githubusercontent.com/24383706/30459319-eaf02ef0-997d-11e7-81aa-65a80a9f3fba.JPG )
+
+
+There is a wonderful free [News API](https://newsapi.org/) 

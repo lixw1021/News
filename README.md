@@ -4,7 +4,7 @@ Key words: AsynchTaskLoader, RecyclerView, ViewPager, Fragment, WebView, MultiSe
 ```
 * Developed a customizable News app for user to subscribe to their favorite news.
 * Implemented RecyclerView to display list news and applied WebView and Fragment to display the full news.
-* Implemented AsynchTaskLoader to load data in backgound and avoid extra load by caching and redelivering existing data.
+* Implemented AsynchTaskLoader to load data in background and avoid extra load by caching and redelivering existing data.
 * Applied Http to fetch data from Guardian and parsed json file to get required information.
 * Used ViwePager and Fragment to implemente swipe view with tabs.
 

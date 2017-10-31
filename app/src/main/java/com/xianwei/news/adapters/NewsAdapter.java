@@ -2,7 +2,9 @@ package com.xianwei.news.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +13,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 import com.xianwei.news.R;
 import com.xianwei.news.WebActivity;
 import com.xianwei.news.models.News;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,10 +47,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         News newsItem = newsList.get(position);
-        Picasso.with(context)
-                .load(newsItem.getImageUrlString())
-                .error(R.drawable.ic_broken_image)
-                .into(holder.imageView);
+
+        if (!TextUtils.isEmpty(newsItem.getImageUrlString())) {
+            Picasso.with(context)
+                    .load(newsItem.getImageUrlString())
+                    .resize(1920, 1080)
+                    .onlyScaleDown()
+                    .error(R.drawable.ic_broken_image)
+                    .into(holder.imageView);
+        }
 
         holder.title.setText(newsItem.getTitle());
         holder.description.setText(newsItem.getDescription());

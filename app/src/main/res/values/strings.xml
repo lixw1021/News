@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">News</string>
-    <string name="api_key"></string>
 
     <string name="check_internet">Please check your internet !</string>
 

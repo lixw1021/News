@@ -13,6 +13,12 @@ import android.support.v7.app.AppCompatActivity;
 public class WebActivity extends AppCompatActivity {
     private static final String URL_STRING = "urlString";
 
+//    @Override
+//    public void startActivity(Intent intent) {
+//        super.startActivity(intent);
+//        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+//    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

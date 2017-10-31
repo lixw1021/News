@@ -1,65 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
-    android:layout_marginStart="4dp"
-    android:layout_marginEnd="4dp"
     android:layout_marginBottom="8dp"
-    android:background="@drawable/list_item_selector">
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="4dp">
 
-    <ImageView
-        android:id="@+id/item_cover_iv"
+    <android.support.constraint.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:scaleType="centerCrop"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/item_title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:textColor="@color/colorBlack"
-        android:textSize="20sp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_cover_iv"
-        tools:text="Avast reckons CCleaner malware infected 2.27M users" />
-
-    <TextView
-        android:id="@+id/item_description_tv"
-        android:layout_width="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
+        android:background="@drawable/list_item_selector">
 
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item_title_tv"
-        tools:text="Users of a free software tool designed to optimize system performance on Windows PCs and Android mobile devices got a nasty shock this morning when Piriform,.." />
+        <ImageView
+            android:id="@+id/item_cover_iv"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="81dp"
+            tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/item_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:textColor="@color/colorText"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@+id/item_description_tv"
-        tools:text="2017-09-18" />
+        <TextView
+            android:id="@+id/item_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_horizontal"
+            android:textColor="@color/colorBlack"
+            android:textSize="20sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_cover_iv"
+            tools:text="Avast reckons CCleaner malware infected 2.27M users" />
 
-    <ImageButton
-        android:id="@+id/item_share_ib"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:background="@color/colorWhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/item_date_tv"
-        app:srcCompat="@drawable/ic_share" />
+        <TextView
+            android:id="@+id/item_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
 
-</android.support.constraint.ConstraintLayout>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_title_tv"
+            tools:text="Users of a free software tool designed to optimize system performance on Windows PCs and Android mobile devices got a nasty shock this morning when Piriform,.." />
+
+        <TextView
+            android:id="@+id/item_date_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorText"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@+id/item_description_tv"
+            tools:layout_editor_absoluteX="0dp"
+            tools:text="2017-09-18"
+            tools:ignore="MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/item_share_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/item_date_tv"
+            app:srcCompat="@drawable/ic_share"
+            tools:layout_editor_absoluteX="0dp" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>
